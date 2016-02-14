@@ -13,6 +13,7 @@ float sub(float a, float b);
 float mult(float a, float b);
 float div(float a, float b);
 float sqr(float a);
+float pwr(float a, float b);
 
 int main() {
 	float a, b, result;
@@ -25,7 +26,7 @@ int main() {
 		cout << "Insert A Number: ";
 		cin >> a;
 
-		cout << "Insert An Operator (+,-,*,/,s): ";
+		cout << "Insert An Operator (+,-,*,/,s,p): ";
 		cin >> op;
 		if (op == 's') {
 			result = sqrt(a);
@@ -51,6 +52,10 @@ int main() {
 					break;
 				case '/':
 					result = div(a, b);
+					validOperator = true;
+					break;
+				case 'p':
+					result = pwr(a, b);
 					validOperator = true;
 					break;
 				default:
