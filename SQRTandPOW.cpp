@@ -98,4 +98,6 @@ float mult(float x, float y) {
 float sqr(float x) {
 	return sqrt(x);
 }
-
+float pwr(float x, float y) {
+	return pow(x);
+}
