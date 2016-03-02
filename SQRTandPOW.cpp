@@ -8,15 +8,15 @@
 #include <math.h> 
 using namespace std;
 
-float add(float a, float b);
-float sub(float a, float b);
-float mult(float a, float b);
-float div(float a, float b);
-float sqr(float a);
-float pwr(float a, float b);
+double add(double a, double b);
+double sub(double a, double b);
+double mult(double a, double b);
+double div(double a, double b);
+double sqr(double a);
+double pwr(double a, double b);
 
 int main() {
-	float a, b, result;
+	double a, b, result;
 	char op;
 	bool again, validOperator = false;
 
@@ -26,7 +26,7 @@ int main() {
 		cout << "Insert A Number: ";
 		cin >> a;
 
-		cout << "Insert An Operator (+,-,*,/,s,p): ";
+		cout << "Insert An Operator (+,-,*,/,s,^): ";
 		cin >> op;
 		if (op == 's') {
 			result = sqrt(a);
@@ -54,7 +54,7 @@ int main() {
 					result = div(a, b);
 					validOperator = true;
 					break;
-				case 'p':
+				case '^':
 					result = pwr(a, b);
 					validOperator = true;
 					break;
@@ -64,8 +64,8 @@ int main() {
 				}
 			} while (!validOperator);
 		}
-			cout << setprecision(4) << "Result = " << result << endl;
-		
+		cout << setprecision(4) << "Result = " << result << endl;
+
 
 		cout << "Would You Like To Perform Another Calculation (Y/N)? ";
 		char input;
@@ -85,24 +85,25 @@ int main() {
 	return 0;
 }
 
-float add(float variable1, float variable2) {
+double add(double variable1, double variable2) {
 	return (variable1 + variable2);
 }
 
-float sub(float x, float y) {
+double sub(double x, double y) {
 	return (x - y);
 }
 
-float div(float value_one, float value_two) {
+double div(double value_one, double value_two) {
 	return (value_one / value_two);
 }
 
-float mult(float x, float y) {
+double mult(double x, double y) {
 	return (x * y);
 }
-float sqr(float x) {
+double sqr(double x) {
 	return sqrt(x);
 }
-float pwr(float x, float y) {
-	return pow(x);
+double pwr(double x, double y) {
+	return pow(x,y);
 }
+
