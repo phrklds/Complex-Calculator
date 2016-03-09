@@ -13,13 +13,15 @@ double mult(double a, double b);
 double div(double a, double b);
 double pwr(double a, double b);
 double checkNumber(string input);
+double inverse (double a, double c);
+
 
 int main() {
-	double a, b, result;
+	double a, b, c, result;
 	string inputA, inputB;
 	char op;
 	bool again, validAgain, validOperator;
-	
+	double c = 1; 
 	do {
 		validOperator = false;
 		validAgain = false;
@@ -60,6 +62,10 @@ int main() {
 				result = pwr(a, b);
 				validOperator = true;
 				break;
+				case'i':
+				result = inverse(c,a)
+ 				validOperator = true;
+ 				break;
 				default:
 				cout << "Please Enter A Valid Operator: ";
 				cin >> op;
@@ -113,6 +119,10 @@ double mult(double x, double y) {
 double pwr(double x, double y) {
 	return pow(x, y);
 }
+
+ double inverse(double a, double c){
+ return (c / a);
+
 
 double checkNumber(string input) {
 	regex integer("\\d+(\\.\\d+)?");
