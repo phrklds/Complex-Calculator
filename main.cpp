@@ -1,3 +1,7 @@
+// ConsoleApplication12.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
 #include <iostream>
 #include <iomanip>
 #include <math.h>
@@ -12,91 +16,97 @@ double sub(double a, double b);
 double mult(double a, double b);
 double div(double a, double b);
 double pwr(double a, double b);
+double inverse(double a, double c);
 double checkNumber(string input);
-double inverse (double a, double c);
+
 
 
 int main() {
-	double a, b, c, result;
+	double a, b, result;
 	string inputA, inputB;
 	char op;
 	bool again, validAgain, validOperator;
-	double c = 1; 
+	double c = 1;
+
 	do {
 		validOperator = false;
 		validAgain = false;
-		
+
 		cout << "Insert A Number: ";
 		cin >> inputA;
 		a = checkNumber(inputA);
-		
-		cout << "Insert An Operator (+,-,*,/,s,^): ";
+
+		cout << "Insert An Operator (+,-,*,/,s,^,i): ";
 		cin >> op;
-		
+
 		if (op == 's') {
 			result = sqrt(a);
-		} else {
+		}
+		else if (op == 'i') {
+			result = inverse(a,c);
+		}
+		else {
 			cout << "Insert A Number: ";
 			cin >> inputB;
 			b = checkNumber(inputB);
-			
+
 			do {
-				switch(op) {
+				switch (op) {
 				case '+':
-				result = add(a, b);
-				validOperator = true;
-				break;
+					result = add(a, b);
+					validOperator = true;
+					break;
 				case '-':
-				result = sub(a, b);
-				validOperator = true;
-				break;
+					result = sub(a, b);
+					validOperator = true;
+					break;
 				case '*':
-				result = mult(a, b);
-				validOperator = true;
-				break;
+					result = mult(a, b);
+					validOperator = true;
+					break;
 				case '/':
-				result = div(a, b);
-				validOperator = true;
-				break;
+					result = div(a, b);
+					validOperator = true;
+					break;
 				case '^':
-				result = pwr(a, b);
-				validOperator = true;
-				break;
+					result = pwr(a, b);
+					validOperator = true;
+					break;
 				case'i':
-				result = inverse(c,a)
- 				validOperator = true;
- 				break;
+					result = inverse(a, c );
+						validOperator = true;
+					break;
 				default:
-				cout << "Please Enter A Valid Operator: ";
-				cin >> op;
+					cout << "Please Enter A Valid Operator: ";
+					cin >> op;
 				}
 			} while (!validOperator);
 		}
-		
+
 		cout << setprecision(4) << "Result = " << result << endl;
-		
+
 		cout << "Would You Like To Perform Another Calculation (Y/N)? ";
 		char input;
 		cin >> input;
-		
+
 		do {
-			switch(input) {
-			case ('Y' | 'y'):
-			again = true;
-			validAgain = true;
-			break;
-			case ('N' | 'n'):
-			again = false;
-			validAgain = true;
-			break;
+			switch (input) {
+			case ('Y' | 'y') :
+				again = true;
+				validAgain = true;
+				break;
+			case ('N' | 'n') :
+				again = false;
+				validAgain = true;
+				break;
 			default:
-			cout << "Please Enter A Valid Response: ";
-			cin >> input;
+				cout << "Please Enter A Valid Response: ";
+				cin >> input;
 			}
 		} while (!validAgain);
-		
+
 	} while (again);
-	
+
 	return 0;
 }
 
@@ -104,7 +114,7 @@ double add(double variable1, double variable2) {
 	return (variable1 + variable2);
 }
 
-double sub (double x, double y) {
+double sub(double x, double y) {
 	return (x - y);
 }
 
@@ -120,27 +130,32 @@ double pwr(double x, double y) {
 	return pow(x, y);
 }
 
- double inverse(double a, double c){
- return (c / a);
-
-
-double checkNumber(string input) {
-	regex integer("\\d+(\\.\\d+)?");
-	
-	bool isValid;
-	double output;
-	
-	do {
-		isValid = regex_match(input, integer);
-		
-		if (isValid) {
-			output = stod(input);
-			cout << "Input " << output << " Is Valid" << endl;
-		} else {
-			cout << "Please Insert A Valid Number: ";
-			cin >> input;
-		}
-	} while (!isValid);
-	
-	return output;
+double inverse(double a, double c){
+	return (c / a);
 }
+
+
+	double checkNumber(string input) {
+		regex integer("\\d+(\\.\\d+)?");
+
+		bool isValid;
+		double output;
+
+		do {
+			isValid = regex_match(input, integer);
+
+			if (isValid) {
+				output = stod(input);
+				cout << "Input " << output << " Is Valid" << endl;
+			}
+			else {
+				cout << "Please Insert A Valid Number: ";
+				cin >> input;
+			}
+		} while (!isValid);
+
+		return output;
+	}
+
+
+
