@@ -1,56 +1,71 @@
-# Complex-Calculator
-Sprint Software
-
 #include <iostream>
 #include <iomanip>
+#include <math.h>
+#include <regex>
 #include <stdio.h>
+#include <string>
+
 using namespace std;
 
-float add(float a, float b);
-float sub(float a, float b);
-float mult(float a, float b);
-float div(float a, float b);
+double add(double a, double b);
+double sub(double a, double b);
+double mult(double a, double b);
+double div(double a, double b);
+double pwr(double a, double b);
+double checkNumber(string input);
 
 int main() {
-	float a, b, result;
+	double a, b, result;
+	string inputA, inputB;
 	char op;
-	bool again, validOperator = false;
+	bool again, validAgain, validOperator;
 	
 	do {
 		validOperator = false;
+		validAgain = false;
 		
 		cout << "Insert A Number: ";
-		cin >> a;
+		cin >> inputA;
+		a = checkNumber(inputA);
 		
-		cout << "Insert An Operator (+,-,*,/): ";
+		cout << "Insert An Operator (+,-,*,/,s,^): ";
 		cin >> op;
 		
-		cout << "Insert A Number: ";
-		cin >> b;
-		
-		do {
-			switch(op) {
-			case '+':
-			result = add(a, b);
-			validOperator = true;
-			break;
-			case '-':
-			result = sub(a, b);
-			validOperator = true;
-			break;
-			case '*':
-			result = mult(a, b);
-			validOperator = true;
-			break;
-			case '/':
-			result = div(a, b);
-			validOperator = true;
-			break;
-			default:
-			cout << "Please Enter A Valid Operator: ";
-			cin >> op;
-			}
-		} while (!validOperator);
+		if (op == 's') {
+			result = sqrt(a);
+		} else {
+			cout << "Insert A Number: ";
+			cin >> inputB;
+			b = checkNumber(inputB);
+			
+			do {
+				switch(op) {
+				case '+':
+				result = add(a, b);
+				validOperator = true;
+				break;
+				case '-':
+				result = sub(a, b);
+				validOperator = true;
+				break;
+				case '*':
+				result = mult(a, b);
+				validOperator = true;
+				break;
+				case '/':
+				result = div(a, b);
+				validOperator = true;
+				break;
+				case '^':
+				result = pwr(a, b);
+				validOperator = true;
+				break;
+				default:
+				cout << "Please Enter A Valid Operator: ";
+				cin >> op;
+				}
+			} while (!validOperator);
+		}
 		
 		cout << setprecision(4) << "Result = " << result << endl;
 		
@@ -58,32 +73,64 @@ int main() {
 		char input;
 		cin >> input;
 		
-		switch(input) {
-			case 'Y':
+		do {
+			switch(input) {
+			case ('Y' | 'y'):
 			again = true;
+			validAgain = true;
 			break;
-			case 'N':
+			case ('N' | 'n'):
 			again = false;
+			validAgain = true;
 			break;
-		}
+			default:
+			cout << "Please Enter A Valid Response: ";
+			cin >> input;
+			}
+		} while (!validAgain);
 		
 	} while (again);
 	
 	return 0;
 }
 
-float add(float variable1, float variable2) {
+double add(double variable1, double variable2) {
 	return (variable1 + variable2);
 }
 
-float sub (float x, float y) {
+double sub (double x, double y) {
 	return (x - y);
 }
 
-float div(float value_one, float value_two) {
+double div(double value_one, double value_two) {
 	return (value_one / value_two);
 }
 
-float mult(float x, float y) {
+double mult(double x, double y) {
 	return (x * y);
+}
+
+double pwr(double x, double y) {
+	return pow(x, y);
+}
+
+double checkNumber(string input) {
+	regex integer("\\d+(\\.\\d+)?");
+	
+	bool isValid;
+	double output;
+	
+	do {
+		isValid = regex_match(input, integer);
+		
+		if (isValid) {
+			output = stod(input);
+			cout << "Input " << output << " Is Valid" << endl;
+		} else {
+			cout << "Please Insert A Valid Number: ";
+			cin >> input;
+		}
+	} while (!isValid);
+	
+	return output;
 }
