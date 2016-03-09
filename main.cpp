@@ -73,7 +73,7 @@ int main() {
 					validOperator = true;
 					break;
 				case'i':
-					result = inverse(a, c );
+					result = inverse(a, c);
 						validOperator = true;
 					break;
 				default:
