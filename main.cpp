@@ -134,28 +134,24 @@ double inverse(double a, double c){
 	return (c / a);
 }
 
+double checkNumber(string input) {
+	regex integer("\\d+(\\.\\d+)?");
 
-	double checkNumber(string input) {
-		regex integer("\\d+(\\.\\d+)?");
+	bool isValid;
+	double output;
 
-		bool isValid;
-		double output;
+	do {
+		isValid = regex_match(input, integer);
 
-		do {
-			isValid = regex_match(input, integer);
+		if (isValid) {
+			output = stod(input);
+			cout << "Input " << output << " Is Valid" << endl;
+		}
+		else {
+			cout << "Please Insert A Valid Number: ";
+			cin >> input;
+		}
+	} while (!isValid);
 
-			if (isValid) {
-				output = stod(input);
-				cout << "Input " << output << " Is Valid" << endl;
-			}
-			else {
-				cout << "Please Insert A Valid Number: ";
-				cin >> input;
-			}
-		} while (!isValid);
-
-		return output;
-	}
-
-
-
+	return output;
+}
