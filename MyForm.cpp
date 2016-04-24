@@ -1,4 +1,12 @@
 #include "MyForm.h"
+#include <string>
+#include <iostream>
+#include <locale>
+#include <ctype.h>
+#include <vector>
+#include <deque>
+#include <stdlib.h>
+
 using namespace System;
 using namespace System::Windows::Forms;
 [STAThread]
